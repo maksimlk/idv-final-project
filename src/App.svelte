@@ -2,6 +2,7 @@
   import svelteLogo from './assets/svelte.svg'
   import viteLogo from '/vite.svg'
   import Scrolly from './lib/Scrolly.svelte'
+  import Map from './lib/Map/Map.svelte'
 
   let value;
   const steps = [
@@ -34,7 +35,7 @@
       </Scrolly>
     </div>
     <div class="sticky">
-      
+        <Map />
     </div>
   </div>
 	<div class='hero'>
