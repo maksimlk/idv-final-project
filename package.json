@@ -12,5 +12,8 @@
     "@sveltejs/vite-plugin-svelte": "^2.4.4",
     "svelte": "^4.1.2",
     "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "maplibre-gl": "^3.3.0"
   }
 }
