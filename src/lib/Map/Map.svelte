@@ -15,6 +15,21 @@
         zoom: initialState.zoom
       });
       map.addControl(new NavigationControl(), 'top-right');
+      map.on('load', function() {
+        map.addSource('countries', {
+          'type': 'geojson',
+          'data': './countries.json',
+        })
+        map.addLayer({
+          'id': 'polygons',
+          'type': 'fill',
+          'source': 'countries',
+          'paint': {
+            'fill-color': '#FFAA01',
+            'fill-opacity': 0.5,
+          }
+        })
+      });
     });
     onDestroy(() => {
           map.remove();
