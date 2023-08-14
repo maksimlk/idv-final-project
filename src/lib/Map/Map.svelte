@@ -2,7 +2,8 @@
     import { onMount, onDestroy } from 'svelte'
     import { Map, NavigationControl, Marker } from 'maplibre-gl';
     import 'maplibre-gl/dist/maplibre-gl.css';
-  
+    import UniqueActivities from './uniqueActivities.js'
+
     let map;
     let mapContainer;
   
