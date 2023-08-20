@@ -13,28 +13,14 @@
     const datasetsKeys = Object.keys(UniqueActivities);
     let loaded = false;
     let hoveredStateName = null;
-
     let data = null;
-
+    export function cameraTo(pos){
+      map.flyTo(pos);
+    }
     let dataset = csv(`./activities_data/${datasetKey}.csv`).then((dat) => {
       data = dat;
     });
 
-    const positions = {
-      'baker': {
-            bearing: 27,
-            center: [-0.15591514, 51.51830379],
-            zoom: 15.5,
-            pitch: 20
-        },
-        'aldgate': {
-            duration: 6000,
-            center: [-0.07571203, 51.51424049],
-            bearing: 150,
-            zoom: 15,
-            pitch: 0
-        },
-    }
     let activePositionName = 'baker';
     onMount(() => {
       const initialState = { lng: 0, lat: 0, zoom: 1 };
@@ -42,16 +28,16 @@
         container: mapContainer,
         style: `https://basemaps.cartocdn.com/gl/positron-gl-style/style.json`,
         center: [initialState.lng, initialState.lat],
-        zoom: initialState.zoom
+        zoom: initialState.zoom,
+        maxZoom: 4,
       });
       map.addControl(new NavigationControl(), 'top-right');
       map.on('load', function() {
         map.addSource('countries', {
           'type': 'geojson',
           'data': './countries.geojson',
-        })
+        });
       });
-
       map.on('click', 'choropleth', (e) => {
         let hrPerDay = data.filter((row) => row.countryISO3 == e.features[0].properties.iso_a3_eh)[0]?.hoursPerDayCombined;
         if(hrPerDay)
@@ -79,7 +65,6 @@
             map.getCanvas().style.cursor = '';
         });
       loaded = true;
-
     });
     onDestroy(() => {
           map.remove();
@@ -106,7 +91,7 @@
 </script>
   
 <div class="wrap">
-    <div>
+    <div class="dataset-selector">
       <label for="column-select">Select a dataset:</label>
         <select bind:value={datasetKey} id="column-select">
         {#each datasetsNames as ds, i}
@@ -145,6 +130,13 @@
   }
   #legend-title{
     font-size: 0.8em;
+  }
+  .dataset-selector{
+    position: absolute;
+    top: 0.05em;
+    right: 0.05em;
+    color: black;
+    font-weight: 700;
   }
 </style>
   
