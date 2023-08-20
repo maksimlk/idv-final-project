@@ -78,3 +78,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.maplibregl-popup {
+  max-width: 400px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+.maplibregl-popup-content{
+  color:black;
+  min-width: 100px;
+}
+.maplibregl-popup-close-button{
+  color:black;
+}
