@@ -132,11 +132,7 @@
     font-size: 0.8em;
   }
   .dataset-selector{
-    position: absolute;
-    top: 0.05em;
-    right: 0.05em;
-    color: black;
-    font-weight: 700;
+    visibility:hidden;
   }
 </style>
   
