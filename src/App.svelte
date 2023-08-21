@@ -126,12 +126,9 @@
 		flex-direction: column;
 		justify-content: center;
 		text-align: center;
+    margin-bottom: 10vh;
 	}
-	
-	.hero h2 {
-		margin-top: 0;
-		font-weight: 200;
-	}
+
   .spacer {
     height: 40vh;
   }

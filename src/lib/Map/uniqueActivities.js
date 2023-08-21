@@ -1,6 +1,6 @@
 export const UniqueActivities = {
     Foodpreparation: "Food preparation",
-    Foodgrowth: "Food growth & collection",
+    Foodgrowthcollection: "Food growth & collection",
     Foodprocessing: "Food Processing",
     Materials: "Materials",
     Energy: "Energy",

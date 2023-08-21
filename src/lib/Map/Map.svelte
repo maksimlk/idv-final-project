@@ -40,20 +40,15 @@
       });
       map.on('click', 'choropleth', (e) => {
         let hrPerDay = data.filter((row) => row.countryISO3 == e.features[0].properties.iso_a3_eh)[0]?.hoursPerDayCombined;
+        let popupHTML = e.features[0].properties.name_long + "<br>" + "GDP: $" + e.features[0].properties.gdp_md.toLocaleString('en-US') + "M";
         if(hrPerDay)
-          new Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(e.features[0].properties.name_long + "<br>" 
-            + "GDP: $" + e.features[0].properties.gdp_md.toLocaleString('en-US') + "M" + "<br>" 
-            + UniqueActivities[datasetKey] + ": " + data.filter((row) => row.countryISO3 == e.features[0].properties.iso_a3_eh)[0]?.hoursPerDayCombined + " hr/day on average per person")
-            .addTo(map);
+          popupHTML += "<br>" + UniqueActivities[datasetKey] + ": " + data.filter((row) => row.countryISO3 == e.features[0].properties.iso_a3_eh)[0]?.hoursPerDayCombined + " hr/day on average per person";
         else
-          new Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(e.features[0].properties.name_long + "<br>" 
-            + "GDP: $" + e.features[0].properties.gdp_md.toLocaleString('en-US') + "M" + "<br>" 
-            + UniqueActivities[datasetKey] + ": No data for this country")
-            .addTo(map);
+          popupHTML += "<br>" + UniqueActivities[datasetKey] + ": No data for this country";
+        new Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(popupHTML)
+          .addTo(map);
         });
 
       map.on('mouseenter', 'choropleth', () => {
